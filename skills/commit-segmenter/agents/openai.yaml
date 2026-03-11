@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Segmenter"
+  short_description: "Finish feature branches with clean commits and safe cleanup"
+  default_prompt: "Use $commit-segmenter to turn the current work into clean Conventional Commits, rebase on origin/main, merge to main, push, and clean temporary refs."

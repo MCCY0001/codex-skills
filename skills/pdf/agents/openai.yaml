@@ -1,0 +1,5 @@
+interface:
+  display_name: "PDF Skill"
+  short_description: "Create, inspect, and revise PDFs with layout validation"
+  icon_large: "./assets/pdf.png"
+  default_prompt: "Use $pdf to inspect this PDF, validate the layout, and summarize the required edits or findings."
