@@ -1,0 +1,25 @@
+name: skill-repo-validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate source skills and curated catalog
+        run: python scripts/skill_repo.py validate --check-export-drift
+
+      - name: List source and catalog skills
+        run: python scripts/skill_repo.py list
