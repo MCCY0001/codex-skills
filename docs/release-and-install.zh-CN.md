@@ -25,25 +25,25 @@ python .\scripts\skill_repo.py list --catalog source --format names
 发布到本地运行时：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter
+uv run python scripts/skill_repo.py publish tech-doc-driven-development
 ```
 
 预览发布动作但不写入：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter --what-if
+uv run python scripts/skill_repo.py publish tech-doc-driven-development --what-if
 ```
 
 禁止覆盖已有本地 skill：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter --no-clobber
+uv run python scripts/skill_repo.py publish tech-doc-driven-development --no-clobber
 ```
 
 跳过备份直接覆盖：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter --force
+uv run python scripts/skill_repo.py publish tech-doc-driven-development --force
 ```
 
 导出稳定 catalog：
@@ -77,7 +77,7 @@ uv run python scripts/skill_repo.py release-check --ref v0.1.0
 Windows 下也可以继续用 PowerShell wrapper：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 commit-segmenter
+powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 tech-doc-driven-development
 ```
 
 ## GitHub 安装
@@ -88,7 +88,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 commit-seg
 python <CODEX_HOME>/skills/.system/skill-installer/scripts/install-skill-from-github.py `
   --repo <owner>/<repo> `
   --ref v0.1.0 `
-  --path skills/.curated/commit-segmenter
+  --path skills/.curated/tech-doc-driven-development
 ```
 
 列出仓库里可安装的 curated skills：

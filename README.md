@@ -46,7 +46,7 @@ uv run python scripts/skill_repo.py <subcommand> ...
 Windows 下也可以继续使用 PowerShell wrapper：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 commit-segmenter
+powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 tech-doc-driven-development
 ```
 
 ## Common Commands
@@ -60,13 +60,13 @@ uv run python scripts/skill_repo.py list --catalog source --format names
 预览本地发布 / Preview a local publish:
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter --what-if
+uv run python scripts/skill_repo.py publish tech-doc-driven-development --what-if
 ```
 
 发布到本地运行时 / Publish to the local runtime:
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter
+uv run python scripts/skill_repo.py publish tech-doc-driven-development
 ```
 
 校验源码和导出目录 / Validate source skills and curated export drift:
@@ -90,7 +90,7 @@ uv run python scripts/skill_repo.py release-check --ref v0.1.0
 Windows 便利入口 / Windows convenience entrypoint:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 commit-segmenter -WhatIfPreview
+powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 tech-doc-driven-development -WhatIfPreview
 ```
 
 ## Add a New Skill
@@ -129,13 +129,13 @@ skills/<skill-name>/
 1. 先预览：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter --what-if
+uv run python scripts/skill_repo.py publish tech-doc-driven-development --what-if
 ```
 
 2. 确认无误后正式发布：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter
+uv run python scripts/skill_repo.py publish tech-doc-driven-development
 ```
 
 3. 发布目标默认是：
@@ -146,13 +146,13 @@ uv run python scripts/skill_repo.py publish commit-segmenter
 4. 发布完成后，新开一个 Codex 会话，用显式调用先验证：
 
 ```text
-Use $commit-segmenter to clean the current feature branch.
+使用 $tech-doc-driven-development 为需求编写技术路线和分阶段实现计划。
 ```
 
 如果你主要在 Windows 上工作，也可以直接用：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 commit-segmenter
+powershell -ExecutionPolicy Bypass -File .\scripts\publish_skills.ps1 tech-doc-driven-development
 ```
 
 ## GitHub Distribution
@@ -174,3 +174,36 @@ CI 已覆盖两类检查：
 - 这个仓库是源码仓库，不是运行时目录。
 - `.venv/` 应保持本地存在但不纳入版本控制。
 - 如果本机 `python` 命中 WindowsApps stub，优先使用 `uv run python ...` 或 `scripts/publish_skills.ps1`。
+
+## 当前维护的自有技能
+
+- `tech-doc-driven-development`：技术路线、分阶段实现计划、单步实施与证据化回填。完整保留原技能的 4 个文件。
+- `commit-segmenter` 已从当前源码和安装 catalog 退役；Git 历史保留。
+- `wecom-unified` 是第三方技能，独立安装，不纳入本仓库。内置 `.system` 技能、插件和凭证也不纳入。
+
+## Windows 与 WSL 双端更新
+
+本机维护目录：`/home/caden/gitRepo/codex-skills`。以后在此仓库 `skills/<name>/` 编辑；原内网 GitLab 仓库保持原样，本流程不会自动回写它。
+
+修改后导出、校验并上传 GitHub：
+
+```bash
+cd /home/caden/gitRepo/codex-skills
+python3 scripts/skill_repo.py export --catalog curated --delete-stale
+python3 scripts/skill_repo.py validate --check-export-drift
+git add skills docs README.md
+git commit -m "docs(skills): 更新技能"
+git push origin main
+```
+
+从 GitHub 更新并同步安装（先确认工作树干净）：
+
+```bash
+cd /home/caden/gitRepo/codex-skills
+git pull --ff-only
+python3 scripts/skill_repo.py validate --check-export-drift
+python3 scripts/skill_repo.py publish --source-root skills/.curated --runtime-path /home/caden/.codex/skills
+python3 scripts/skill_repo.py publish --source-root skills/.curated --runtime-path /mnt/c/Users/mccy0/.codex/skills
+```
+
+两个安装路径显式指定，不依赖可能指向 Windows 的 `CODEX_HOME`。发布脚本默认备份被替换的技能；只同步本仓库技能，不清空其他技能。此流程是手动更新，不是后台自动同步。安装后在下一轮对话核对技能发现；如未刷新，重开聊天。

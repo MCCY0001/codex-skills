@@ -1,0 +1,4 @@
+interface:
+  display_name: "技术文档驱动开发"
+  short_description: "固定六段路线、每步三项，按最小设计单步实施并证据化回填"
+  default_prompt: "使用 $tech-doc-driven-development 先生成包含背景、目标、整体链路、方案、验收标准和范围的技术路线，再生成计划态实现文档；实现初稿每步只写到“加什么功能”。"

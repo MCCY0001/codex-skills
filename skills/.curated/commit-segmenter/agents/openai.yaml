@@ -1,4 +1,0 @@
-interface:
-  display_name: "Commit Segmenter"
-  short_description: "Clean dirty feature branches into Conventional Commits"
-  default_prompt: "Use $commit-segmenter to clean the current feature branch with checkpoint commits or a dirty worktree."

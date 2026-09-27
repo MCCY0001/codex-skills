@@ -74,13 +74,13 @@ uv run python scripts/skill_repo.py export --catalog curated --delete-stale
 只导出单个 skill：
 
 ```bash
-uv run python scripts/skill_repo.py export commit-segmenter
+uv run python scripts/skill_repo.py export tech-doc-driven-development
 ```
 
 导出到实验目录：
 
 ```powershell
-uv run python scripts/skill_repo.py export commit-segmenter `
+uv run python scripts/skill_repo.py export tech-doc-driven-development `
   --catalog experimental
 ```
 
@@ -130,7 +130,7 @@ skills/<skill-name>/
 ```powershell
 python <CODEX_HOME>/skills/.system/skill-installer/scripts/install-skill-from-github.py `
   --repo <owner>/<repo> `
-  --path skills/commit-segmenter
+  --path skills/tech-doc-driven-development
 ```
 
 方式二：装导出的 catalog 路径。更标准，也便于列出可安装 skill，也是默认推荐路径。
@@ -138,7 +138,7 @@ python <CODEX_HOME>/skills/.system/skill-installer/scripts/install-skill-from-gi
 ```powershell
 python <CODEX_HOME>/skills/.system/skill-installer/scripts/install-skill-from-github.py `
   --repo <owner>/<repo> `
-  --path skills/.curated/commit-segmenter
+  --path skills/.curated/tech-doc-driven-development
 ```
 
 如果要列出仓库里可安装的 curated skills：
@@ -172,7 +172,7 @@ tag 安装示例：
 python <CODEX_HOME>/skills/.system/skill-installer/scripts/install-skill-from-github.py `
   --repo <owner>/<repo> `
   --ref v0.1.0 `
-  --path skills/.curated/commit-segmenter
+  --path skills/.curated/tech-doc-driven-development
 ```
 
 ## 为什么这是更通用的改法
@@ -193,7 +193,7 @@ python <CODEX_HOME>/skills/.system/skill-installer/scripts/install-skill-from-gi
 2. 本地验证时执行：
 
 ```bash
-uv run python scripts/skill_repo.py publish commit-segmenter
+uv run python scripts/skill_repo.py publish tech-doc-driven-development
 uv run python scripts/skill_repo.py validate --check-export-drift
 ```
 
