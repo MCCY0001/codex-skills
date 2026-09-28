@@ -1,7 +1,11 @@
-# codex-skills
+# Agent Workbench
 
-个人 Codex skills 源码仓库。
-Personal source repository for Codex skills.
+个人 Agent 开发工作台，用于维护可复用的技能，并逐步扩展工具、工作流、评测和开发脚本。
+A personal workbench for agent development: reusable skills, tools, workflows, evaluations, and development scripts.
+
+当前已实现的能力是 Codex skills 的开发、校验、分发与本地安装；其他能力将按实际需求逐步加入。
+
+GitHub: https://github.com/MCCY0001/agent-workbench
 
 ## Repository Model
 
@@ -183,12 +187,12 @@ CI 已覆盖两类检查：
 
 ## Windows 与 WSL 双端更新
 
-本机维护目录：`/home/caden/gitRepo/codex-skills`。以后在此仓库 `skills/<name>/` 编辑；原内网 GitLab 仓库保持原样，本流程不会自动回写它。
+本机维护目录：`/home/caden/gitRepo/agent-workbench`。以后在此仓库 `skills/<name>/` 编辑；原内网 GitLab 仓库保持原样，本流程不会自动回写它。
 
 修改后导出、校验并上传 GitHub：
 
 ```bash
-cd /home/caden/gitRepo/codex-skills
+cd /home/caden/gitRepo/agent-workbench
 python3 scripts/skill_repo.py export --catalog curated --delete-stale
 python3 scripts/skill_repo.py validate --check-export-drift
 git add skills docs README.md
@@ -199,7 +203,7 @@ git push origin main
 从 GitHub 更新并同步安装（先确认工作树干净）：
 
 ```bash
-cd /home/caden/gitRepo/codex-skills
+cd /home/caden/gitRepo/agent-workbench
 git pull --ff-only
 python3 scripts/skill_repo.py validate --check-export-drift
 python3 scripts/skill_repo.py publish --source-root skills/.curated --runtime-path /home/caden/.codex/skills
